@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package grin.api.auth;
+option go_package = "auth";
+
+import "google/protobuf/timestamp.proto";
+
+message User {
+  int64 id = 1;
+  string account = 2;
+  string username = 3;
+  string email = 4;
+  string phoneNumber = 5;
+  google.protobuf.Timestamp createdAt = 6;
+  int64 updatedAt = 7;
+}
