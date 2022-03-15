@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package captcha;
+option go_package = "github.com/grin-ch/grin-api/api/grpc/captcha";
+
+
+message Captcha {
+  string key = 1;
+  Purpose purpose = 2;
+  string content = 3;
+  string message = 4;
+  int64 deadline = 5;
+}
+
+// 通过purpose字段限制用途
+enum Purpose {
+  SIGN_UP = 0;  // 注册
+  SIGN_IN = 1;  // 登入
+  RESET_PASSWD = 2; // 重置密码
+}
+
+message AsyncCodeReq {
+  // email or phone
+  string contact = 1;
+  Purpose purpose = 2;
+}
+
+message AsyncCodeRsp {
+}
+
+message GraphCaptchaReq {
+  Purpose purpose = 1;
+}
+
+message GraphCaptchaRsp {
+  Captcha captcha = 1;
+}
+
+message VerifyReq {
+  string key = 1;
+  string value = 2;
+  Purpose purpose = 3;
+}
+
+message VerifyRsp {
+  bool success = 1;
+}
+
+service CaptchaService {
+  // 异步验证码 用于短信/邮箱等
+  rpc AsyncCode(AsyncCodeReq) returns (AsyncCodeRsp);
+  // 图形验证码
+  rpc GraphCaptcha(GraphCaptchaReq) returns (GraphCaptchaRsp);
+  // 验证码校验
+  rpc Verify(VerifyReq) returns (VerifyRsp);
+}
