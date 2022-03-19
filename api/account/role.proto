@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package grin.api.account;
+option go_package = "grin-api/api/account";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// 角色
+message Role {
+  int64 id = 1;
+  string name = 2;
+  string desc = 3;
+  google.protobuf.Timestamp updated_at = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+message CreateRoleReq {
+  Role role = 1;
+}
+
+message CreateRoleRsp{
+  int64 id = 1;
+}
+
+message ReadRoleReq {
+  int64 id = 1;
+}
+
+message ReadRoleRsp{
+  Role role = 1;
+}
+
+message UpdateRoleReq {
+  Role role = 1;
+}
+
+message DeleteRoleReq {
+  int64 id = 1;
+}
+
+message ListRoleReq {
+  int64 page = 1;
+  int64 size = 2;
+  string order_by = 3;
+}
+
+message ListRoleRsp{
+  int64 count = 1;
+  repeated Role list = 2;
+}
+
+service RoleService {
+  // CRUD
+  rpc Create(CreateRoleReq) returns (CreateRoleRsp);
+  rpc Read(ReadRoleReq) returns (ReadRoleRsp);
+  rpc Update(UpdateRoleReq) returns (google.protobuf.Empty);
+  rpc Delete(DeleteRoleReq) returns (google.protobuf.Empty);
+  rpc List(ListRoleReq) returns (ListRoleRsp);
+}

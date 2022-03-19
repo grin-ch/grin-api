@@ -1,6 +1,6 @@
 gen:
 	protoc --version
-	protoc --gogo_out=plugins=grpc:. ./api/**/*.proto
+	protoc -I=. --go_out=plugins=grpc:.. ./api/**/*.proto
 	go mod tidy
 
 clean:

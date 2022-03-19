@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package grin.api.account;
+option go_package = "grin-api/api/account";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "api/account/user.proto";
+import "api/account/role.proto";
+
+message UserRole {
+  int64 id = 1;
+  int64 user_id = 2;
+  int64 role_id = 3;
+  google.protobuf.Timestamp updated_at = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message GroupReq {
+  int64 role_id = 1;
+}
+
+message GroupRsp {
+  repeated User group = 1;
+}
+
+message RoleSetReq {
+  int64 user_id = 1;
+}
+
+message RoleSetRsp {
+  repeated Role role_set = 1;
+}
+
+message MatchReq {
+  int64 user_id = 1;
+  int64 role_id = 2;
+}
+
+message MatchRsp {
+  bool success = 1;
+}
+
+message CreateUserRoleReq {
+  int64 user_id = 1;
+  int64 role_id = 2;
+}
+
+message CreateUserRoleRsp{
+  int64 id = 1;
+}
+
+message ReadUserRoleReq {
+  int64 id = 1;
+}
+
+message ReadUserRoleRsp{
+  UserRole user_role = 1;
+}
+
+message UpdateUserRoleReq {
+  UserRole user_role = 1;
+}
+
+message DeleteUserRoleReq {
+  int64 id = 1;
+}
+
+message ListUserRoleReq {
+  int64 page = 1;
+  int64 size = 2;
+  string order_by = 3;
+}
+
+message ListUserRoleRsp{
+  int64 count = 1;
+  repeated UserRole list = 2;
+}
+
+service UserRoleService {
+  // 用户组 一个角色的用户组成
+  rpc Group(GroupReq) returns (GroupRsp);
+  // 角色集 一个用户的角色组成
+  rpc RoleSet(RoleSetReq) returns (RoleSetRsp);
+  // 判断用户和角色是否匹配
+  rpc Match(MatchReq) returns (MatchRsp);
+
+  // CRUD
+  rpc Create(CreateUserRoleReq) returns (CreateUserRoleRsp);
+  rpc Read(ReadUserRoleReq) returns (ReadUserRoleRsp);
+  rpc Update(UpdateUserRoleReq) returns (google.protobuf.Empty);
+  rpc Delete(DeleteUserRoleReq) returns (google.protobuf.Empty);
+  rpc List(ListUserRoleReq) returns (ListUserRoleRsp);
+}

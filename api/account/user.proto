@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package grin.api.account;
+option go_package = "grin-api/api/account";
+
+import "google/protobuf/timestamp.proto";
+import "api/captcha/captcha.proto";
+
+message User {
+  int64 id = 1;
+  string salt = 2;
+  string username = 3;
+  string password = 4;
+  string phone_number = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  google.protobuf.Timestamp created_at = 7;
+}
+
+message SignUpReq {
+  string username =1;
+  string phone_number = 2;
+  string password = 3;
+  api.captcha.VerifyReq verifyReq = 4;
+}
+
+message SignUpRsp {
+  bool success = 1;
+  string message = 2;
+}
+
+message SignInReq {
+    oneof account {
+      string username = 1;
+      string phone_number = 2;
+    }
+    string password = 3;
+    api.captcha.VerifyReq verifyReq = 4;
+}
+
+message SignInRsp {
+  string token = 1;
+}
+
+message ResetPasswdReq {
+  string password = 1;
+  string captcha = 2;
+}
+
+message ResetPasswdRsp {
+  bool success = 1;
+}
+
+service UserService {
+  // 注册
+  rpc SignUp(SignUpReq) returns (SignUpRsp);
+  // 登入
+  rpc SignIn(SignInReq) returns (SignInRsp);
+  // 重置密码
+  rpc ResetPasswd(ResetPasswdReq) returns (ResetPasswdRsp);
+}

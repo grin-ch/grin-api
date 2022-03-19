@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package grin.api.auth;
+option go_package = "grin-api//api/auth";
+
+message AuthReq {
+
+}
+message AuthRsp {
+  string access_token = 1;
+}
+
+service AuthService {
+  rpc Auth(AuthReq) returns (AuthRsp);
+}

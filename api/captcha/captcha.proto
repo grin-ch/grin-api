@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package grin.api.captcha;
+option go_package = "grin-api/api/captcha";
+
+
+message Captcha {
+  string key = 1;
+  Purpose purpose = 2;
+  string content = 3;
+  string message = 4;
+  int64 deadline = 5;
+}
+
+// 通过purpose字段限制用途
+enum Purpose {
+  // shor message code
+  SIGN_UP = 0;
+  RESET_PASSWD = 1;
+  // graph captcha
+  SIGN_IN = 2;
+}
+
+message ShorMessageCodeReq {
+  string phone_number = 1;
+  Purpose purpose = 2;
+}
+
+message ShorMessageCodeRsp {
+  bool success = 1;
+}
+
+message GraphCaptchaReq {
+  Purpose purpose = 3;
+}
+
+message GraphCaptchaRsp {
+  Captcha captcha = 1;
+}
+
+message VerifyReq {
+  string key = 1;
+  string value = 2;
+  Purpose purpose = 3;
+}
+
+message VerifyRsp {
+  bool success = 1;
+}
+
+service CaptchaService {
+  // 短信验证码
+  rpc SignUpCode(ShorMessageCodeReq) returns (ShorMessageCodeRsp);
+  // 图形验证码
+  rpc GraphCaptcha(GraphCaptchaReq) returns (GraphCaptchaRsp);
+  // 验证码校验
+  rpc Verify(VerifyReq) returns (VerifyRsp);
+}
