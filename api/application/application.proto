@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package grin.api.application;
+option go_package = "grin-api/api/application";
+
+message Application {
+  int64 id = 1;
+  int64 user_id = 2;
+  string app_id = 3;
+  string private_key = 4;
+  string public_key = 5;
+  string type = 6;
+}
+
+
+
+service ApplicationService {
+
+}
