@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package captcha;
-option go_package = "gitee.com/grin-api/api/captcha";
+option go_package = "gitee.com/gyzj/grin-api/api/captcha";
 
 
 message Captcha {
