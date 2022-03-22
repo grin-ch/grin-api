@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package grin.api.application;
-option go_package = "grin-api/api/application";
+package application;
+option go_package = "gitee.com/grin-api/api/application";
 
 message Application {
   int64 id = 1;

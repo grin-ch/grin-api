@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package grin.api.account;
-option go_package = "grin-api/api/account";
+package account;
+option go_package = "gitee.com/grin-api/api/account";
 
 import "google/protobuf/timestamp.proto";
 import "api/captcha/captcha.proto";
@@ -20,7 +20,7 @@ message SignUpReq {
   string username =1;
   string phone_number = 2;
   string password = 3;
-  api.captcha.VerifyReq verifyReq = 4;
+  captcha.VerifyReq verifyReq = 4;
 }
 
 message SignUpRsp {
@@ -29,12 +29,12 @@ message SignUpRsp {
 }
 
 message SignInReq {
-    oneof account {
-      string username = 1;
-      string phone_number = 2;
-    }
-    string password = 3;
-    api.captcha.VerifyReq verifyReq = 4;
+  oneof account {
+    string username = 1;
+    string phone_number = 2;
+  }
+  string password = 3;
+  captcha.VerifyReq verifyReq = 4;
 }
 
 message SignInRsp {

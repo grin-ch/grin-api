@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package grin.api.account;
-option go_package = "grin-api/api/account";
+package account;
+option go_package = "gitee.com/grin-api/api/account";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";

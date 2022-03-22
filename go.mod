@@ -1,4 +1,4 @@
-module grin-api
+module gitee.com/grin-api
 
 go 1.17
 

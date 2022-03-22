@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package grin.api.auth;
-option go_package = "grin-api/api/auth";
+package auth;
+option go_package = "gitee.com/grin-api/api/auth";
 
 message AuthReq {
   string app_id = 3;
