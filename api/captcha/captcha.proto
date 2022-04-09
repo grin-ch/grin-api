@@ -21,12 +21,15 @@ enum Purpose {
   SIGN_IN = 2;
 }
 
-message ShorMessageCodeReq {
-  string phone_number = 1;
-  Purpose purpose = 2;
+message SignUpCodeReq {
+  oneof account {
+    string email = 1;
+    string phone_number = 2;
+  }
+  Purpose purpose = 3;
 }
 
-message ShorMessageCodeRsp {
+message SignUpCodeRsp {
   bool success = 1;
 }
 
@@ -50,7 +53,7 @@ message VerifyRsp {
 
 service CaptchaService {
   // 短信验证码
-  rpc SignUpCode(ShorMessageCodeReq) returns (ShorMessageCodeRsp);
+  rpc SignUpCode(SignUpCodeReq) returns (SignUpCodeRsp);
   // 图形验证码
   rpc GraphCaptcha(GraphCaptchaReq) returns (GraphCaptchaRsp);
   // 验证码校验
