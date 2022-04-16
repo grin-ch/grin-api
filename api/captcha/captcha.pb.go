@@ -28,7 +28,7 @@ const (
 type Purpose int32
 
 const (
-	// shor message code
+	// short message code
 	Purpose_SIGN_UP      Purpose = 0
 	Purpose_RESET_PASSWD Purpose = 1
 	// graph captcha

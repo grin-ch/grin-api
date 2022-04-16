@@ -14,7 +14,7 @@ message Captcha {
 
 // 通过purpose字段限制用途
 enum Purpose {
-  // shor message code
+  // short message code
   SIGN_UP = 0;
   RESET_PASSWD = 1;
   // graph captcha
