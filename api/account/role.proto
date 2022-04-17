@@ -3,16 +3,15 @@ syntax = "proto3";
 package account;
 option go_package = "gitee.com/gyzj/grin-api/api/account";
 
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
 // 角色
 message Role {
   int64 id = 1;
-  string name = 2;
-  string desc = 3;
-  google.protobuf.Timestamp updated_at = 5;
-  google.protobuf.Timestamp created_at = 6;
+  int64 updated_at = 2;
+  int64 created_at = 3;
+  string name = 4;
+  string desc = 5;
 }
 
 message CreateRoleReq {

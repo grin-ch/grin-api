@@ -3,17 +3,16 @@ syntax = "proto3";
 package account;
 option go_package = "gitee.com/gyzj/grin-api/api/account";
 
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 import "api/account/user.proto";
 import "api/account/role.proto";
 
 message UserRole {
   int64 id = 1;
-  int64 user_id = 2;
-  int64 role_id = 3;
-  google.protobuf.Timestamp updated_at = 4;
-  google.protobuf.Timestamp created_at = 5;
+  int64 updated_at = 2;
+  int64 created_at = 3;
+  int64 user_id = 4;
+  int64 role_id = 5;
 }
 
 message GroupReq {
