@@ -22,7 +22,7 @@ enum Purpose {
 }
 
 message SignUpCodeReq {
-  oneof account {
+  oneof contact {
     string email = 1;
     string phone_number = 2;
   }

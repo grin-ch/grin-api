@@ -12,14 +12,16 @@ message User {
   string salt = 4;
   string username = 5;
   string password = 6;
-  string phone_number = 7;
+  string email = 7;
+  string phone_number = 8;
 }
 
 message SignUpReq {
-  string username =1;
-  string phone_number = 2;
-  string password = 3;
-  captcha.VerifyReq verifyReq = 4;
+  string username = 1;
+  string email = 2;
+  string phone_number = 3;
+  string password = 4;
+  captcha.VerifyReq verifyReq = 5;
 }
 
 message SignUpRsp {
@@ -30,10 +32,11 @@ message SignUpRsp {
 message SignInReq {
   oneof account {
     string username = 1;
-    string phone_number = 2;
+    string email = 2;
+    string phone_number = 3;
   }
-  string password = 3;
-  captcha.VerifyReq verifyReq = 4;
+  string password = 4;
+  captcha.VerifyReq verifyReq = 5;
 }
 
 message SignInRsp {
@@ -41,8 +44,13 @@ message SignInRsp {
 }
 
 message ResetPasswdReq {
-  string password = 1;
-  string captcha = 2;
+  oneof account {
+    string username = 1;
+    string email = 2;
+    string phone_number = 3;
+  }
+  string password = 4;
+  captcha.VerifyReq verifyReq = 5;
 }
 
 message ResetPasswdRsp {
