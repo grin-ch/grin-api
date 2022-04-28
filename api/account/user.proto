@@ -30,13 +30,10 @@ message SignUpRsp {
 }
 
 message SignInReq {
-  oneof account {
-    string username = 1;
-    string email = 2;
-    string phone_number = 3;
-  }
-  string password = 4;
-  captcha.VerifyReq verifyReq = 5;
+  // usernmae, email or phone
+  string contact = 1;
+  string password = 2;
+  captcha.VerifyReq verifyReq = 3;
 }
 
 message SignInRsp {
@@ -44,13 +41,10 @@ message SignInRsp {
 }
 
 message ResetPasswdReq {
-  oneof account {
-    string username = 1;
-    string email = 2;
-    string phone_number = 3;
-  }
-  string password = 4;
-  captcha.VerifyReq verifyReq = 5;
+  // usernmae, email or phone
+  string contact = 1;
+  string password = 2;
+  captcha.VerifyReq verifyReq = 3;
 }
 
 message ResetPasswdRsp {

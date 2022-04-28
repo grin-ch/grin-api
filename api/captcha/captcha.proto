@@ -22,11 +22,9 @@ enum Purpose {
 }
 
 message SignUpCodeReq {
-  oneof contact {
-    string email = 1;
-    string phone_number = 2;
-  }
-  Purpose purpose = 3;
+  // email or phone
+  string contact = 1;
+  Purpose purpose = 2;
 }
 
 message SignUpCodeRsp {
