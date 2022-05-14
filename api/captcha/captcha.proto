@@ -14,21 +14,18 @@ message Captcha {
 
 // 通过purpose字段限制用途
 enum Purpose {
-  // short message code
   SIGN_UP = 0;
-  RESET_PASSWD = 1;
-  // graph captcha
-  SIGN_IN = 2;
+  SIGN_IN = 1;
+  RESET_PASSWD = 2;
 }
 
-message SignUpCodeReq {
+message AsyncCodeReq {
   // email or phone
   string contact = 1;
   Purpose purpose = 2;
 }
 
-message SignUpCodeRsp {
-  bool success = 1;
+message AsyncCodeRsp {
 }
 
 message GraphCaptchaReq {
@@ -50,8 +47,8 @@ message VerifyRsp {
 }
 
 service CaptchaService {
-  // 短信验证码
-  rpc SignUpCode(SignUpCodeReq) returns (SignUpCodeRsp);
+  // 异步验证码 用于短信/邮箱等
+  rpc AsyncCode(AsyncCodeReq) returns (AsyncCodeRsp);
   // 图形验证码
   rpc GraphCaptcha(GraphCaptchaReq) returns (GraphCaptchaRsp);
   // 验证码校验
