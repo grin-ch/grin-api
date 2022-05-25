@@ -1,4 +1,4 @@
-module gitee.com/gyzj/grin-api
+module github.com/grin-ch/grin-api
 
 go 1.18
 

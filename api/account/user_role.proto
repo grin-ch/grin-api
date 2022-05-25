@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package account;
-option go_package = "gitee.com/gyzj/grin-api/api/account";
+option go_package = "github.com/grin-ch/grin-api/api/account";
 
 import "google/protobuf/empty.proto";
 import "api/account/user.proto";
