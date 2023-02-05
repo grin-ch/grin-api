@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package account;
+option go_package = "github.com/grin-ch/grin-api/api/grpc/account";
+
+// contact: 邮箱或手机号
+// captcha: 验证码
+
+message SignUpReq {
+  string username = 1;
+  string contact = 2;
+  string password = 3;
+  string captcha = 4;
+}
+
+message SignUpRsp {
+  bool success = 1;
+  string message = 2;
+}
+
+message SignInReq {
+  string contact = 1;
+  string password = 2;
+
+  string captcha_key = 3;
+  string captcha = 4;
+}
+
+message SignInRsp {
+  string token = 1;
+}
+
+message ResetPasswdReq {
+  string contact = 1;
+  string password = 2;
+  string captcha = 4;
+}
+
+message ResetPasswdRsp {
+  bool success = 1;
+}
+
+service UserService {
+  // 注册
+  rpc SignUp(SignUpReq) returns (SignUpRsp);
+  // 登入
+  rpc SignIn(SignInReq) returns (SignInRsp);
+  // 重置密码
+  rpc ResetPasswd(ResetPasswdReq) returns (ResetPasswdRsp);
+}
